@@ -5,6 +5,10 @@ import re
 import sys
 import ast
 from operator import itemgetter
+from prettytable import PrettyTable
+
+table  = PrettyTable()
+table.field_names = ["Time", "IP Address", "Count"]
 
 
 dict_ip_count = {}
@@ -31,7 +35,9 @@ for d in dict_ip_count.keys():
     # sorted_dict_ip_count = sorted(dict_ip_count.items(),key=itemgetter(0))
     for ip,count in sorted_dict_ip_count:
         if counter!=0:
-            print('%s\t%s\t%s'%(d,ip,count))
+            # print('%s\t%s\t%s'%(d,ip,count))
+            table.add_row([d,ip,count])
             counter-=1
         else:
             break
+print(table)
